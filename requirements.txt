@@ -1,0 +1,8 @@
+pytest==7.4.3
+pytest-bdd==6.1.1
+pytest-bdd-html==0.1.14a0
+pytest-html==3.2.0
+pytest-metadata==3.0.0
+pytest-parallel==0.1.1
+requests==2.31.0
+urllib3==1.26.12
