@@ -78,6 +78,6 @@ You can find more information about these plugins at:
 | ```pytest```                                                            | Executes all tests.                                                                                   | 
 | `pytest -vv`                                                            | Displays verbose terminal reports.                                                                    | 
 | `pytest -m "posts"`                                                     | Runs tests marked with `@posts`.                                                                      | 
-| `pytest -m "comments" --html=reports/report.html --self-contained-html` | Executes `@posts` tests and generate an HTML report..                                                 | 
+| `pytest -m "comments" --html=reports/report.html --self-contained-html` | Executes `@posts` tests and generate an HTML report.                                                  | 
 | `pytest --worker 5`                                                     | Runs tests in parallel using the `pytest-parallel` library with 5 processes.                          | 
 | `pytest --tenv="jsonplaceholder"`                                       | Uses a custom `pytest` command option for domain prefix. **Note**: No real QA/Dev environment exists. | 

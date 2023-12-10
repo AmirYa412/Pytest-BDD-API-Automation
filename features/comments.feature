@@ -1,7 +1,7 @@
 @comments
 Feature: Comments
   As a client developer, I want to make sure "/comments" & "/posts/*/comments" API endpoints working as expected.
-  The client should be able to fetch and create new posts via API requests.
+  The client should be able to fetch and create new comments via API requests.
 
   Scenario: Get random post's comments
     Given client request all posts
