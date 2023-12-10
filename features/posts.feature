@@ -3,7 +3,7 @@ Feature: Posts API
   As a client developer, I want to make sure "/posts" API endpoint functions correctly and returns expected data.
   The client should be able to fetch and create new posts via API requests.
 
-  Scenario: Get all posts
+  Scenario: Get all available posts
     Given client request all posts
     Then verify response contain posts
 
