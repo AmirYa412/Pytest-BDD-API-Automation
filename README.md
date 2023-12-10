@@ -1,11 +1,11 @@
 # Intro
 A BDD test automation project written in `Python` using `pytest-bdd` framework.
-I suggest reading `pytest-bdd` docs to understand how it utilizes fixture.
+I suggest reading `pytest-bdd` docs to understand how it utilizes fixtures.
 https://pytest-bdd.readthedocs.io/en/stable/
 
 
 The project utilize `https://jsonplaceholder.typicode.com` **fake** API service.
-* **Note**: the API does not really create resources, so the test assertions are limited.
+* **Note**: the API does not really create resources, so the test assertions are limited in `@then` steps.
 
 # Installation
 The project has been tested and verified with `Python 3.7` on `MacOS - Sonoma`.
