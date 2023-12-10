@@ -23,5 +23,10 @@ class Client:
             response = session.put(self.base_url+path, params=params, data=data)
         return response
 
+    def delete_request(self, path, params=None, data=None):
+        with self.session as session:
+            response = session.delete(self.base_url+path, params=params, data=data)
+        return response
+
     def change_header_value(self, header_key, value):
         self.session.headers[header_key] = value
