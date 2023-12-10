@@ -22,9 +22,7 @@ pip install -r requirements.txt
 ```
 
 # Files Relationships
-`pytest-bdd` utilizes feature files to define the scenarios.
-Each feature file has a `pytest` `test_*.py` file connected to it, so pytest will collect at it as test.
-The connection is done by this line:
+`pytest-bdd` links Gherkin feature file scenarios to Python test implementations using the `scenarios()` function, enabling associations via step definitions and markers.
 
 ``` python
 # Content of steps/posts/test_posts.py
