@@ -476,10 +476,10 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>test_results.html</h1>
-    <p>Report generated on 10-Dec-2023 at 16:16:45 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
+    <p>Report generated on 10-Dec-2023 at 18:52:19 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.2.0</p>
     <h2>Summary</h2>
-    <p>10 tests ran in 6.45 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">9 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">1 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>1 tests ran in 1.43 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">1 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -491,31 +491,6 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
           <th class="sortable result-links" col="result-links">Failed Step</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="5">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="failed results-table-row">
-        <tr>
-          <td class="col-result">Failed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_bad_request_for_new_post_creation_without_title__body</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Bad request for new post creation without title &amp; body</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client create new post with missing data</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new post failed to create</span></div></div></div></div></td>
-          <td class="col-duration">0.54</td>
-          <td class="col-name" style="color:red; font-weight:bold;">verify new post failed to create</td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="log">fixturefunc = &lt;function verify_new_post_creation_failed at 0x7f89380ee510&gt;<br/>request = &lt;FixtureRequest for &lt;Function test_bad_request_for_new_post_creation_without_title__body&gt;&gt;<br/>kwargs = {&#x27;new_post_response&#x27;: &lt;Response [201]&gt;}<br/><br/>    def call_fixture_func(<br/>        fixturefunc: &quot;_FixtureFunc[FixtureValue]&quot;, request: FixtureRequest, kwargs<br/>    ) -&gt; FixtureValue:<br/>        if is_generator(fixturefunc):<br/>            fixturefunc = cast(<br/>                Callable[..., Generator[FixtureValue, None, None]], fixturefunc<br/>            )<br/>            generator = fixturefunc(**kwargs)<br/>            try:<br/>                fixture_result = next(generator)<br/>            except StopIteration:<br/>                raise ValueError(f&quot;{request.fixturename} did not yield a value&quot;) from None<br/>            finalizer = functools.partial(_teardown_yield_fixture, fixturefunc, generator)<br/>            request.addfinalizer(finalizer)<br/>        else:<br/>            fixturefunc = cast(Callable[..., FixtureValue], fixturefunc)<br/>&gt;           fixture_result = fixturefunc(**kwargs)<br/><br/>venv-bdd/lib/python3.7/site-packages/_pytest/fixtures.py:902: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>new_post_response = &lt;Response [201]&gt;<br/><br/>    @then(&quot;verify new post failed to create&quot;)<br/>    def verify_new_post_creation_failed(new_post_response):<br/>        # Expecting server to return status code 400<br/>&gt;       assert new_post_response.status_code == 400<br/><span class="error">E       assert 201 == 400</span><br/><span class="error">E        +  where 201 = &lt;Response [201]&gt;.status_code</span><br/><br/>steps/posts_steps/test_posts.py:34: AssertionError<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
@@ -538,212 +513,7 @@ The client should be able to fetch and create new posts via API requests.</div><
                   <div Class="step"><span Class="step-name ">When</span><span Class="step-message">client choose a random post</span></div>
                   <div Class="step"><span Class="step-name step-is-and">And</span><span Class="step-message">client request comments of a post</span></div>
                   <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify post contain comments</span></div></div></div></div></td>
-          <td class="col-duration">1.26</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/comments_steps/test_comments.py::test_publish_new_comment_on_random_post[John Doe-johndoe@gmail.com-Body text for new comment test]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Comments</div>
-                  <div>As a client developer, I want to make sure &quot;/comments&quot; &amp; &quot;/posts/*/comments&quot; API endpoints working as expected.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Publish new comment on random post</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client request all posts</span></div>
-                  <div Class="step"><span Class="step-name ">When</span><span Class="step-message">client choose a random post</span></div>
-                  <div Class="step"><span Class="step-name step-is-and">And</span><span Class="step-message">client publish new comment with John Doe, johndoe@gmail.com and Body text for new comment test</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new comment published with John Doe, johndoe@gmail.com and Body text for new comment test</span></div></div></div></div></td>
-          <td class="col-duration">0.91</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/comments_steps/test_comments.py::test_publish_new_comment_on_random_post[Foo Boy-foo@gmail.com-Body t3xt w!th sp3ci@l ch@r@cters]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Comments</div>
-                  <div>As a client developer, I want to make sure &quot;/comments&quot; &amp; &quot;/posts/*/comments&quot; API endpoints working as expected.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Publish new comment on random post</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client request all posts</span></div>
-                  <div Class="step"><span Class="step-name ">When</span><span Class="step-message">client choose a random post</span></div>
-                  <div Class="step"><span Class="step-name step-is-and">And</span><span Class="step-message">client publish new comment with Foo Boy, foo@gmail.com and Body t3xt w!th sp3ci@l ch@r@cters</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new comment published with Foo Boy, foo@gmail.com and Body t3xt w!th sp3ci@l ch@r@cters</span></div></div></div></div></td>
-          <td class="col-duration">0.81</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_get_all_available_posts</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Get all available posts</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client request all posts</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify response contain posts</span></div></div></div></div></td>
-          <td class="col-duration">0.28</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_get_random_post_and_check_it_contain_data</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Get random post and check it contain data</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client request all posts</span></div>
-                  <div Class="step"><span Class="step-name ">When</span><span Class="step-message">client choose a random post</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify post contain data</span></div></div></div></div></td>
-          <td class="col-duration">0.26</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_create_a_new_post_in_supported_languages[English Title-English text for new post]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Create a new post in supported languages</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client create new post with English Title and English text for new post</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new post created with expected English Title and English text for new post</span></div></div></div></div></td>
-          <td class="col-duration">0.58</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_create_a_new_post_in_supported_languages[Title with Emoji 😎-English text for new post with Emoji ❤️]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Create a new post in supported languages</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client create new post with Title with Emoji 😎 and English text for new post with Emoji ❤️</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new post created with expected Title with Emoji 😎 and English text for new post with Emoji ❤️</span></div></div></div></div></td>
-          <td class="col-duration">0.54</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_create_a_new_post_in_supported_languages[日本語のタイトル-投稿テストの日本語テキスト]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Create a new post in supported languages</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client create new post with 日本語のタイトル and 投稿テストの日本語テキスト</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new post created with expected 日本語のタイトル and 投稿テストの日本語テキスト</span></div></div></div></div></td>
-          <td class="col-duration">0.56</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">steps/posts_steps/test_posts.py::test_create_a_new_post_in_supported_languages[Título en español-Texto en español para probar publicaciones]</td>
-          <td Class="col-description">
-            <div Class="col-description-bdd-doc">
-              <div>
-                <h3>Feature</h3>
-                <div Class="text">
-                  <div>Posts API</div>
-                  <div>As a client developer, I want to make sure &quot;/posts&quot; API endpoint functions correctly and returns expected data.
-The client should be able to fetch and create new posts via API requests.</div></div></div>
-              <div>
-                <h3>Scenario</h3>
-                <div Class="text">Create a new post in supported languages</div></div>
-              <div>
-                <h3>Steps</h3>
-                <div Class="steps">
-                  <div Class="step"><span Class="step-name ">Given</span><span Class="step-message">client create new post with Título en español and Texto en español para probar publicaciones</span></div>
-                  <div Class="step"><span Class="step-name ">Then</span><span Class="step-message">verify new post created with expected Título en español and Texto en español para probar publicaciones</span></div></div></div></div></td>
-          <td class="col-duration">0.55</td>
+          <td class="col-duration">1.35</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
