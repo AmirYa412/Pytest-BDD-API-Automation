@@ -42,8 +42,8 @@ def pytest_html_results_table_header(cells):
     try:
         # Rename "Links" column to "Failed Step"
         cells[-1] = html.th("Failed Step", class_="sortable result-links", col="result-links")
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Error on changing HTML report column: {e}")
 
 
 def pytest_html_results_table_row(report, cells):
@@ -54,4 +54,4 @@ def pytest_html_results_table_row(report, cells):
             failed_step = next(step for step in steps if step["failed"])
             cells[-1] = html.td(f"{failed_step['name']}", class_="col-name", style="color:red; font-weight:bold;")
     except Exception as e:
-        pass
+        print(f"Error on inserting failed step to HTML report: {e}")
