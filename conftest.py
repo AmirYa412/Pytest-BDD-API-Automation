@@ -24,4 +24,4 @@ def env(request):
 def client(env):
     client = Client(env=env)
     yield client
-
+    client.session.close()
