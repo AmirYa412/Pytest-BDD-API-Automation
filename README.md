@@ -34,6 +34,7 @@ scenarios('../../features/posts.feature')
 To share steps between feature files, in `test_x.py` you will need to import step functions from `steps/feature_y_steps/steps.py`.
 
 You can see example in how posts steps are imported in `steps/comments_steps/test_comments.py` and being used in `features/comments.feature`.
+- It is also possible to import steps in `conftest.py` to make steps available across all feature files.
 
 The project structure is organized as follows:
 
