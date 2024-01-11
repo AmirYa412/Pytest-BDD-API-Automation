@@ -37,6 +37,17 @@ def client(env):
 # HTML Report Hooks
 #######################################
 
+def pytest_bdd_after_scenario(request):
+    # Add relevant scenario's fixtures to report's stdout
+    excluded_fixtures = ("pytestconfig", "request")
+    try:
+        for fixture_name in request.node.fixturenames:
+            if fixture_name not in excluded_fixtures:
+                fixture_value = request.getfixturevalue(fixture_name)
+                print(f"{fixture_name}: {fixture_value} \n")
+    except Exception as e:
+        print(f"Error adding fixture data to stdout: {e}")
+
 
 def pytest_html_results_table_header(cells):
     try:
