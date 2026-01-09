@@ -258,12 +258,6 @@ pytest -n auto  # Uses all available CPU cores
 pytest -n 4     # Uses 4 parallel workers
 ```
 
-### Run Specific Scenario
-```bash
-pytest -k "User is able to authenticate"
-pytest -k "Search products"
-```
-
 ### Verbose Output with Logging
 ```bash
 pytest -v -s  # -v verbose, -s shows print statements
@@ -350,14 +344,6 @@ The framework includes **custom HTML report enhancements** implemented in `conft
 # Generate self-contained HTML report
 pytest --html=reports/report.html --self-contained-html
 
-# Open report in browser (macOS)
-open reports/report.html
-
-# Open report in browser (Linux)
-xdg-open reports/report.html
-
-# Open report in browser (Windows)
-start reports/report.html
 ```
 
 ---

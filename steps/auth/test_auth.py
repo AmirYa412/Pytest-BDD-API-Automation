@@ -1,4 +1,5 @@
-from pytest_bdd import scenarios, then, parsers
+from pytest_bdd import scenarios, then
+from pytest_bdd.parsers import parse
 from utilities.schema_validation import validate_schema
 from services.auth import AuthLogin, AuthMe
 
@@ -76,7 +77,7 @@ def verify_profile_data(profile_response, login_response):
     assert profile_response["role"] in valid_roles, f"Unknown role: {profile_response['role']}"
 
 
-@then(parsers.parse('login error message should be {expected_message}'))
+@then(parse('login error message should be {expected_message}'))
 def verify_login_error_message(login_response, expected_message):
     """Verifies the specific text of the error message."""
     actual_message = login_response.get("message", "")
