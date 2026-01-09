@@ -1,4 +1,5 @@
-from pytest_bdd import scenarios, then, parsers
+from pytest_bdd import scenarios, then
+from pytest_bdd.parsers import parse
 from utilities.schema_validation import validate_schema
 from services.products import Products, ProductGet
 
@@ -34,7 +35,7 @@ def verify_products_list_not_empty(products_response):
     assert products_response["total"] > 0, "Total count should be greater than 0"
 
 
-@then(parsers.parse("products list has {count:d} items, skipped {skip:d} and sorted by {field} {order}"))
+@then(parse("products list has {count:d} items, skipped {skip:d} and sorted by {field} {order}"))
 def verify_products_pagination_and_sort(products_response, count, skip, field, order):
     """Verify the products list count, skip value, and sort order."""
     # Verify count & count
@@ -73,14 +74,14 @@ def verify_product_data(product_response):
     assert product_response["thumbnail"].startswith("http"), "Thumbnail must be a valid URL"
 
 
-@then(parsers.parse('error message contains {expected_text}'))
+@then(parse('error message contains {expected_text}'))
 def verify_error_message_contains(product_error_response, expected_text):
     """Verify error message contains expected text."""
     actual_message = product_error_response.get("message", "")
     assert expected_text in actual_message, f"Expected message to contain '{expected_text}', got '{actual_message}'"
 
 
-@then(parsers.parse('all products match search query "{query}"'))
+@then(parse('all products match search query "{query}"'))
 def verify_search_results_match_query(products_response, query):
     """Verify all products in search results match the query."""
     query_lower = query.lower()
@@ -94,7 +95,7 @@ def verify_search_results_match_query(products_response, query):
         assert query_lower in title, f"Product '{product['title']}' does not match query '{query}'"
 
 
-@then(parsers.parse('all products are in category {category}'))
+@then(parse('all products are in category {category}'))
 def verify_products_category(products_response, category):
     """Verify all products belong to the specified category."""
     products = products_response["products"]
