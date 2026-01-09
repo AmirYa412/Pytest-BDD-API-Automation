@@ -1,4 +1,4 @@
-from support.users import CI_USERS, PRODUCTION_USERS
+from config.users import CI_USERS, PRODUCTION_USERS
 
 
 class Environment:

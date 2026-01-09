@@ -1,6 +1,4 @@
 """Load environment variables from .env file and define user credentials for different environments."""
-
-
 import os
 from dotenv import load_dotenv
 
@@ -11,7 +9,7 @@ PRODUCTION_USERS = {
         "username" : "emilys",
         "password" : os.getenv('PROD_EMILY_PASSWORD', None)
     },
-    "michael": {
+    "Michael": {
         "username": "michaelw",
         "password": os.getenv('PROD_MICHAEL_PASSWORD', None)
     },
