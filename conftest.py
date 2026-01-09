@@ -8,7 +8,7 @@ import json
 ##########################################
 from steps.auth.steps import *
 from steps.products.steps import *
-
+from steps.carts.steps import *
 
 
 def pytest_addoption(parser):
