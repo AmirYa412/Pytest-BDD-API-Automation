@@ -1,53 +1,34 @@
-"""Authentication step definitions - reusable across features."""
-
-from pytest_bdd import given, when, parsers
-from requests import Response
-from helpers.auth import AuthLogin, AuthRefresh, AuthMe
-
+from pytest_bdd import given, when
+from pytest_bdd.parsers import parse
+from services.auth import AuthLogin, AuthMe
 
 # ===== GIVEN STEPS =====
 
-@given(parsers.parse('user "{user_name}" is authenticated'), target_fixture="auth_response")
-def authenticate_specific_user(client, user_name: str) -> str:
-    """Authenticate specific user and set Bearer token in session."""
+@given(parse('user {user_name} is authenticated'), target_fixture="login_response")
+def authenticate_specific_user(client, user_name: str) -> dict:
+    """Setup step: Authenticate and return response."""
     user = client.users[user_name]
     payload = AuthLogin.get_payload(user["username"], user["password"])
-    response = client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=200)
 
+    response = client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=200)
     token = response["accessToken"]
     client.session.headers.update({"Authorization": f"Bearer {token}"})
     return response
 
+# ===== WHEN STEPS (Login) =====
 
-# ===== WHEN STEPS =====
+@when(parse("{user_name} attempts to login with {password} password"), target_fixture="login_response")
+def login_with_bad_password(client, user_name, password) -> dict:
+    """Action: Login invalid. Still returns auth_response."""
+    if password == "missing":
+        payload = AuthLogin.get_payload(username=client.users[user_name]["username"])
+    else:
+        payload = AuthLogin.get_payload(username=client.users[user_name], password=password)
+    return client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=400)
 
-@when(parsers.parse('user attempts to login with username "{username}" and password "{password}"'),
-      target_fixture="auth_response")
-def login_with_credentials(client, username: str, password: str) -> Response:
-    """Attempt login with specific credentials."""
-    payload = AuthLogin.get_payload(username, password)
-    return client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=200)
+# ===== WHEN STEPS (Profile) =====
 
-
-@when("user attempts to login with missing password", target_fixture="auth_response")
-def login_with_missing_password(client) -> Response:
-    """Attempt login with missing password field."""
-    user = client.users["Emily"]
-    payload = AuthLogin.get_payload(username=user["username"])  # password=None
-    return client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=200)
-
-
-@when("user attempts to login with empty credentials", target_fixture="auth_response")
-def login_with_empty_credentials(client) -> Response:
-    """Attempt login with empty credential fields."""
-    payload = AuthLogin.get_payload("", "")
-    return client.post_request(AuthLogin.ENDPOINT, json=payload, expected_status=200)
-
-
-@when("user refreshes authentication token", target_fixture="refresh_response")
-def refresh_auth_token(client, auth_response) -> Response:
-    """Attempt to refresh access token."""
-    refresh_token = auth_response.json().get("refreshToken")
-    payload = AuthRefresh.get_payload(refresh_token)
-    return client.post_request(AuthRefresh.ENDPOINT, json=payload, expected_status=200)
-
+@when("fetching user profile", target_fixture="profile_response")
+def fetch_own_profile(client) -> dict:
+    """Action: Get Profile."""
+    return client.get_request(AuthMe.ENDPOINT, expected_status=200)

@@ -1,8 +1,8 @@
-import pytest
+from pytest import fixture
 from bs4 import BeautifulSoup
-from support.environment import Environment
+from config.environment import Environment
 from support.client import Client
-
+import json
 ##########################################
 # Shared steps in pytest global context
 ##########################################
@@ -20,7 +20,7 @@ def pytest_addoption(parser):
 #######################################
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def env(request):
     """Create environment configuration fixture.
     Environment can be specified via --env command line option.
@@ -35,7 +35,7 @@ def env(request):
     return env
 
 
-@pytest.fixture(scope="session")
+@fixture(scope="session")
 def client(env):
     """Create HTTP client fixture with session management.
 
@@ -57,13 +57,14 @@ def pytest_bdd_after_scenario(request):
         client = request.getfixturevalue("client")
         client.reset_session()
 
-    # Reset client and prints all fixtures used in the test to stdout for HTML report
-    excluded_fixtures = ("pytestconfig", "request")
+    excluded_fixtures = ("pytestconfig", "request", "env", "client")
+
     try:
-        for fixture_name in request.node.fixturenames:
-            if fixture_name not in excluded_fixtures:
+        for fixture_name in request.fixturenames:
+            if fixture_name not in excluded_fixtures and "bdd" not in fixture_name:
                 fixture_value = request.getfixturevalue(fixture_name)
-                print(f"{fixture_name}: {fixture_value} \n")
+                value_to_print = json.dumps(fixture_value) if isinstance(fixture_value, dict) else fixture_value
+                print(f"\n{fixture_name} | \n {value_to_print} \n")
     except Exception as e:
         print(f"Error adding fixture data to stdout: {e}")
 

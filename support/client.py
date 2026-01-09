@@ -1,5 +1,5 @@
 import requests
-from support.environment import Environment
+from config.environment import Environment
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 import logging
