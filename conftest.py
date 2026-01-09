@@ -7,6 +7,7 @@ import json
 # Shared steps in pytest global context
 ##########################################
 from steps.auth.steps import *
+from steps.products.steps import *
 
 
 
