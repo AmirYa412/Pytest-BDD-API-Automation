@@ -5,19 +5,18 @@ Built to showcase scalable architecture, clean code patterns, and comprehensive 
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Architecture](#architecture)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Setup & Installation](#setup--installation)
-- [Environment Configuration](#environment-configuration)
-- [Test Execution](#test-execution)
-- [Test Coverage](#test-coverage)
-- [HTML Reporting](#html-reporting)
-- [Design Patterns](#design-patterns)
-- [Best Practices Demonstrated](#best-practices-demonstrated)
-
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture](#️-architecture)
+- [Technology Stack](#️-technology-stack)
+- [Project Structure](#-project-structure)
+- [Setup & Installation](#-setup--installation)
+- [Environment Configuration](#️-environment-configuration)
+- [Test Execution](#-test-execution)
+- [Test Coverage](#-test-coverage)
+- [HTML Reporting](#-html-reporting)
+- [Design Patterns](#-design-patterns)
+- [Best Practices Demonstrated](#-best-practices-demonstrated)
 ---
 
 ## 🎯 Overview
