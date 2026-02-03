@@ -13,6 +13,8 @@ Built to showcase scalable architecture, clean code patterns, and comprehensive 
 - [Setup & Installation](#-setup--installation)
 - [Environment Configuration](#️-environment-configuration)
 - [Test Execution](#-test-execution)
+- [Docker](#-docker)
+- [CI/CD Pipeline](#-cicd-pipeline)
 - [Test Coverage](#-test-coverage)
 - [HTML Reporting](#-html-reporting)
 - [Design Patterns](#-design-patterns)
@@ -206,6 +208,9 @@ This framework tests the [DummyJSON API](https://dummyjson.com) using pytest-BDD
 
 ---
 
+
+
+
 ## ⚙️ Environment Configuration
 
 The framework supports multiple test environments through the `--env_prefix` flag:
@@ -268,6 +273,53 @@ pytest --env_prefix=ci --html=reports/ci-report.html
 ```
 
 ---
+## 🐳 Docker
+
+The test suite runs in a containerized environment built on `python:3.14-slim`. Credentials are injected at runtime via `--env-file` — never baked into the image — keeping it clean and portable.
+
+### Build & Run
+```bash
+# Build
+docker build -t pytest-bdd .
+
+# Run all tests, report writes directly to local reports/
+docker run --env-file .env -v $(pwd)/reports:/app/reports pytest-bdd
+
+# Run a specific scope
+docker run --env-file .env -v $(pwd)/reports:/app/reports pytest-bdd pytest -m smoke
+```
+
+### Key Decisions
+- **Runtime credential injection** — `--env-file` passes variables into the container process. The `.env` file never enters the image.
+- **Volume mount** — `reports/` points directly at the host filesystem, so `report.html` is available the moment the container exits.
+- **`.dockerignore`** — Excludes `.env`, `venv/`, `.git/`, and build artifacts from the image context entirely.
+
+---
+
+## 🔄 CI/CD Pipeline
+
+Automated execution and live reporting via GitHub Actions and GitHub Pages. Every run deploys the report to a persistent URL — no downloads, no artifacts.
+
+### Triggers
+
+| Trigger | When | Default Scope |
+|---------|------|---------------|
+| **Push to main** | Automatic on merge | `smoke` |
+| **Manual** | Actions → Run workflow | Configurable |
+
+### Manual Inputs
+Two options exposed in the GitHub Actions UI:
+- **Environment prefix** — Target environment (`empty` = production)
+- **Test scope** — `all` / `smoke` / `regression` / `auth` / `products` / `carts`
+
+### Live Report
+Every run deploys the latest HTML report to GitHub Pages:
+
+🔗 [Latest Test Report](https://amirya412.github.io/Pytest-BDD-API-Automation/report.html)
+
+---
+
+
 
 ## 📊 Test Coverage
 
