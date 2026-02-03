@@ -3,6 +3,7 @@ Feature: Products
   As a client developer, I want to ensure the products endpoints
   function correctly for listing, searching, and retrieving product details.
 
+  @smoke @regression
   Scenario: Get all products with default pagination
     When fetching all products
     Then products list schema should be valid
@@ -18,6 +19,7 @@ Feature: Products
     | title | asc   |
     | price | desc  |
 
+  @regression
   Scenario: Get single product details from list
     When fetching products with limit 2, skip 1 and sort by title desc
     And fetching product at index 1 from list
@@ -29,6 +31,7 @@ Feature: Products
     Then product error schema should be valid
     And error message contains not found
 
+  @smoke @regression
   Scenario: Search products and get details
     When searching products with query phone
     And fetching product at index 0 from search results
