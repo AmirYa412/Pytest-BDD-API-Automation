@@ -1,0 +1,66 @@
+name: Pytest-BDD API Tests
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      env_prefix:
+        description: "Environment prefix"
+        required: false
+        default: ""
+      markers:
+        description: "Test Suite Scope"
+        type: choice
+        default: smoke
+        options:
+          - all
+          - smoke
+          - regression
+          - auth
+          - products
+          - carts
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t pytest-bdd .
+
+      - name: Run tests
+        id: run-tests
+        continue-on-error: true
+        env:
+          # Pull inputs into env vars for cleaner shell access
+          SELECTED_MARKER: ${{ github.event.inputs.markers || 'smoke' }}
+          ENV_PREFIX: ${{ github.event.inputs.env_prefix }}
+        run: |
+          # Use an array to build command - avoids messy string quoting issues
+          OPTS=()
+          
+          # Logic: if 'all', pass no marker. Otherwise, pass the selection.
+          [[ "$SELECTED_MARKER" != "all" ]] && OPTS+=("-m" "$SELECTED_MARKER")
+          
+          # Add env_prefix if provided
+          [[ -n "$ENV_PREFIX" ]] && OPTS+=("--env_prefix=$ENV_PREFIX")
+
+          echo "Executing: docker run ... pytest-bdd ${OPTS[@]}"
+
+          docker run --rm \
+            --env-file .env \
+            -v ${{ github.workspace }}/reports:/app/reports \
+            pytest-bdd pytest "${OPTS[@]}"
+
+      - name: Upload report as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/report.html
+
+      - name: Check test status
+        if: steps.run-tests.outcome == 'failure'
+        run: exit 1

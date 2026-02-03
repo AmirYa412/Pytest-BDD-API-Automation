@@ -9,6 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# pytest is always the entrypoint.
-# Any args you pass to `docker run` get appended after it.
 CMD ["pytest"]
