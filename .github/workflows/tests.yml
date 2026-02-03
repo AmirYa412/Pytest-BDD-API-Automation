@@ -1,5 +1,10 @@
 name: Pytest-BDD API Tests
 
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -60,6 +65,18 @@ jobs:
         with:
           name: test-report
           path: reports/report.html
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports/
+
+      - name: Publish Pages
+        if: always()
+        uses: actions/deploy-pages@v4
+
 
       - name: Check test status
         if: steps.run-tests.outcome == 'failure'
