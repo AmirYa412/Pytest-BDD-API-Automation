@@ -3,11 +3,13 @@ Feature: Authentication
   As a client developer, I want to ensure the authentication endpoints
   (login, refresh, me) function correctly.
 
+  @smoke @regression
   Scenario: User is able to authenticate
     Given user Emily is authenticated
     Then login schema should be valid
     And login data is valid
 
+  @regression
   Scenario: Authenticated user is able to fetch profile
     Given user Michael is authenticated
     When fetching user profile
