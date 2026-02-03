@@ -1,5 +1,10 @@
 name: Pytest-BDD API Tests
 
+permissions:
+  pages: write
+  id-token: write
+  contents: read
+
 on:
   push:
     branches: [ main ]
@@ -24,6 +29,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -54,12 +60,23 @@ jobs:
             -v ${{ github.workspace }}/reports:/app/reports \
             pytest-bdd pytest "${OPTS[@]}"
 
-      - name: Upload report as artifact
+      - name: Deploy to GitHub Pages
+        id: deployment
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: test-report
-          path: reports/report.html
+          path: reports/
+
+      - name: Publish Pages
+        if: always()
+        uses: actions/deploy-pages@v4
+
+      - name: Add report link to summary
+        if: always()
+        run: |
+          REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          echo "## 📊 Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "[Open Report](https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/report.html)" >> $GITHUB_STEP_SUMMARY
 
       - name: Check test status
         if: steps.run-tests.outcome == 'failure'
